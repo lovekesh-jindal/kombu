@@ -212,7 +212,8 @@ class Resource:
 
         def acquire(self, *args, **kwargs):
             import traceback
-            id = self._next_resource_id = self._next_resource_id + 1
+            self._next_resource_id += 1
+            id = self._next_resource_id
             print(f'+{id} ACQUIRE {self.__class__.__name__}')
             r = self._orig_acquire(*args, **kwargs)
             r._resource_id = id
